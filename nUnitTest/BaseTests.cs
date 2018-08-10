@@ -1,9 +1,9 @@
 using NUnit.Framework;
 
 
-namespace Tests
+namespace Hangman.Tests
 {
-    public class Tests
+    public class BaseTests
     {
         [SetUp]
         public void Setup()
@@ -13,7 +13,7 @@ namespace Tests
         [Test]
         public void IntegrationTest()
         {
-            var sut = new Hangman.Hangman("Developer");
+            var sut = new Hangman("Developer");
 
             Assert.That(sut.Guess('u'), Is.EqualTo("---------"));
             Assert.That(sut.Guess('e'), Is.EqualTo("-e-e---e-"));
@@ -31,7 +31,7 @@ namespace Tests
         [Test]
         public void CorrectGuessAfterCtor()
         {
-            var sut = new Hangman.Hangman("Developer");
+            var sut = new Hangman("Developer");
             Assert.That(sut.Guess('e'), Is.EqualTo("-e-e---e-"));
         }
     }
