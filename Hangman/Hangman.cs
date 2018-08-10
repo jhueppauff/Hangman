@@ -23,20 +23,17 @@ namespace Hangman
             this.result = new string(hyphen, this.word.Length).ToCharArray();
         }
 
-        public bool Guess(char ch)
+        public string Guess(char ch)
         {
-            bool guessedCorrect = false;
-
             for (int i = 0; i < this.word.Length; i++)
             {
                 if (char.ToLower(this.word[i]) == char.ToLower(ch))
                 {
                     this.result[i] = word[i];
-                    guessedCorrect = true;
                 }
             }
 
-            return guessedCorrect;
+            return new string(this.result);
         }
 
         public string Result => new string(this.result);
