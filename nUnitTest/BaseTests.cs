@@ -96,5 +96,17 @@ namespace Hangman.Tests
             var e = Assert.Throws<ArgumentException>(() => sut.Guess('x'));
             Assert.That(e.Message, Is.EqualTo("Word has been already solved!"));
         }
+
+        [Test]
+        public void WordHasNotBeenSolved()
+        {
+            var sut = new Hangman("word");
+
+            sut.Guess('w');
+            sut.Guess('d');
+            sut.Guess('r');
+
+            Assert.That(sut.Guessed, Is.False);
+        }
     }
 }
