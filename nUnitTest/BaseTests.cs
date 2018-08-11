@@ -1,5 +1,5 @@
 using NUnit.Framework;
-
+using System;
 
 namespace Hangman.Tests
 {
@@ -29,10 +29,46 @@ namespace Hangman.Tests
         }
 
         [Test]
+        public void GuessedIsTrueAfterWordIsGuessed()
+        {
+            var sut = new Hangman("One");
+
+            sut.Guess('o');
+            Assert.That(sut.Guessed, Is.False);
+            sut.Guess('n');
+            Assert.That(sut.Guessed, Is.False);
+            sut.Guess('e');
+            Assert.That(sut.Guessed, Is.True);
+        }
+
+        [Test]
         public void CorrectGuessAfterCtor()
         {
             var sut = new Hangman("Developer");
             Assert.That(sut.Guess('e'), Is.EqualTo("-e-e---e-"));
+        }
+
+        [Test]
+        public void WrongGuessAfterCtor()
+        {
+            var sut = new Hangman("Developer");
+            Assert.That(sut.Guess('x'), Is.EqualTo("---------"));
+            Assert.That(sut.Result, Is.EqualTo("---------"));
+        }
+
+        [Test]
+        public void ExceptionThrownIfWordContainsHypen()
+        {
+            var e = Assert.Throws<ArgumentException>(() => new Hangman("-"));
+            Assert.That(e.Message, Is.EqualTo("Word must not contain hyphen '-'"));
+        }
+
+        [Test]
+        public void CapitalLetterAreFound()
+        {
+            var sut = new Hangman("dDBb");
+            Assert.That(sut.Guess('d'), Is.EqualTo("dD--"));
+            Assert.That(sut.Guess('b'), Is.EqualTo("dDBb"));
         }
     }
 }
