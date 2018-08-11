@@ -70,5 +70,17 @@ namespace Hangman.Tests
             Assert.That(sut.Guess('d'), Is.EqualTo("dD--"));
             Assert.That(sut.Guess('b'), Is.EqualTo("dDBb"));
         }
+
+        [Test]
+        public void ResultIsCorrect()
+        {
+            var sut = new Hangman("result");
+
+            sut.Guess('r');
+            sut.Guess('e');
+            sut.Guess('s');
+
+            Assert.That(sut.Result, Is.EqualTo("res---"));
+        }
     }
 }
