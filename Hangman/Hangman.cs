@@ -45,6 +45,11 @@ namespace Hangman
         /// <returns>Result after the Character was validated against the unknown word</returns>
         public string Guess(char ch)
         {
+            if (Guessed)
+            {
+                throw new ArgumentException("Word has been already solved!");
+            }
+
             for (int i = 0; i < this.word.Length; i++)
             {
                 if (char.ToLower(this.word[i]) == char.ToLower(ch))

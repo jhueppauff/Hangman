@@ -82,5 +82,19 @@ namespace Hangman.Tests
 
             Assert.That(sut.Result, Is.EqualTo("res---"));
         }
+
+        [Test]
+        public void WordHasBeenSolved()
+        {
+            var sut = new Hangman("word");
+
+            sut.Guess('w');
+            sut.Guess('o');
+            sut.Guess('d');
+            sut.Guess('r');
+
+            var e = Assert.Throws<ArgumentException>(() => sut.Guess('x'));
+            Assert.That(e.Message, Is.EqualTo("Word has been already solved!"));
+        }
     }
 }
