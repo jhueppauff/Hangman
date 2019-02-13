@@ -1,6 +1,6 @@
 # Hangman
 
-Base Hangman Project to demonstrate automatic testing
+Base Hangman Project to demonstrate automatic testing (CT)
 
 
 
